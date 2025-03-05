@@ -11,7 +11,6 @@ interface ImageProps {
   height?: string;
   priority?: boolean;
   clickable?: boolean;
-  highContrast?: boolean;
 }
 
 const ImageWithLoading = ({ 
@@ -21,8 +20,7 @@ const ImageWithLoading = ({
   width, 
   height, 
   priority = false,
-  clickable = false,
-  highContrast = false
+  clickable = false
 }: ImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,7 +73,7 @@ const ImageWithLoading = ({
         <motion.img
           src={src}
           alt={alt}
-          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 ${highContrast ? 'grayscale contrast-125' : ''}`}
+          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}

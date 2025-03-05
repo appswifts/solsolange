@@ -16,7 +16,7 @@ const SectionHeading = ({
 }: SectionHeadingProps) => {
   return (
     <div 
-      className={`mb-12 ${centered ? 'text-center' : ''} ${className}`}
+      className={`mb-8 ${centered ? 'text-center' : ''} ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ const SectionHeading = ({
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl md:text-5xl font-playfair font-bold text-black dark:text-white mb-6 tracking-tight negative-tracking">
+        <h2 className="text-3xl md:text-5xl font-playfair font-bold text-black dark:text-white mb-4 tracking-tight negative-tracking">
           {title}
         </h2>
         
@@ -42,7 +42,7 @@ const SectionHeading = ({
         )}
         
         <motion.div
-          className="w-16 h-[1px] bg-black/30 dark:bg-white/30 mt-8"
+          className="w-16 h-[1px] bg-black/30 dark:bg-white/30 mt-6"
           initial={{ width: 0 }}
           whileInView={{ width: 64 }}
           viewport={{ once: true }}

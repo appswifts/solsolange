@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, User, Search } from 'lucide-react';
@@ -117,12 +116,12 @@ const Blog = () => {
   return (
     <div className="pt-20 min-h-screen">
       {/* Hero section - Improved with modern styling */}
-      <section className="relative py-32 px-6 bg-black text-white">
+      <section className="relative py-24 px-6 bg-black text-white">
         <div className="absolute inset-0 z-0 opacity-60">
           <ImageWithLoading
             src="/lovable-uploads/fe7b80f4-9044-45a5-989d-abf3c61c3f37.png"
             alt="Blog header"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale contrast-125"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/50"></div>
         </div>
@@ -183,9 +182,9 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Featured posts section - Improved with modern styling */}
+      {/* Featured posts section - Improved with modern spacing */}
       {selectedCategory === 'All' && searchQuery === '' && (
-        <section className="py-24 px-6 bg-gray-50">
+        <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <SectionHeading 
               title="Featured Stories" 
@@ -229,8 +228,8 @@ const Blog = () => {
         </section>
       )}
 
-      {/* All posts section - Improved with modern styling */}
-      <section className="py-24 px-6 bg-white">
+      {/* All posts section - Improved with modern spacing */}
+      <section className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <SectionHeading 
             title={selectedCategory !== 'All' ? `${selectedCategory} Stories` : "All Stories"} 
@@ -298,7 +297,7 @@ const Blog = () => {
       </section>
 
       {/* Newsletter section - Improved with modern styling */}
-      <section className="py-24 px-6 bg-black text-white">
+      <section className="py-16 px-6 bg-black text-white">
         <div className="max-w-5xl mx-auto text-center">
           <AnimatedSection>
             <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-8 negative-tracking">

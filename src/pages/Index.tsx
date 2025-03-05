@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Camera, BookOpen, Map, Sun } from 'lucide-react';
@@ -16,10 +15,10 @@ const Index = () => {
           <ImageWithLoading
             src="/lovable-uploads/e8b96511-32ef-4d18-9bd8-1c4b710dd829.png"
             alt="Sol Solange in Rwanda"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale contrast-125"
             priority={true}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
         </div>
 
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-white px-6 pt-16">
@@ -94,7 +93,7 @@ const Index = () => {
       </section>
 
       {/* About brief section - Improved spacing and typography */}
-      <section id="about" className="py-32 px-6 bg-white">
+      <section id="about" className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="w-full md:w-1/2">
@@ -144,7 +143,7 @@ const Index = () => {
       </section>
 
       {/* What I Do Section - With outline icons and improved spacing */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <SectionHeading 
             title="What I Do" 
@@ -190,7 +189,7 @@ const Index = () => {
       </section>
 
       {/* Featured Travel Stories Section - Improved typography and spacing */}
-      <section className="py-32 px-6 bg-white">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <SectionHeading 
             title="Uko nageze" 
@@ -258,7 +257,7 @@ const Index = () => {
       </section>
 
       {/* Featured Photos Section - With clickable images */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <SectionHeading 
             title="Through My Lens" 
@@ -312,7 +311,7 @@ const Index = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-32 px-6 bg-black text-white">
+      <section className="py-20 px-6 bg-black text-white">
         <div className="max-w-5xl mx-auto text-center">
           <AnimatedSection>
             <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-8 negative-tracking">

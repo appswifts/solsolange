@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Camera, Tag, CalendarDays, Filter } from 'lucide-react';
@@ -18,7 +17,6 @@ interface Photo {
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
   const location = useLocation();
   
   // Mock photos data
@@ -121,36 +119,6 @@ const Portfolio = () => {
     ? photos 
     : photos.filter(photo => photo.category === activeFilter);
 
-  // Handle image modal
-  const openImageModal = (photo: Photo) => {
-    setSelectedImage(photo);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeImageModal = () => {
-    setSelectedImage(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  // Handle ESC key press to close modal
-  useEffect(() => {
-    const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedImage) {
-        closeImageModal();
-      }
-    };
-
-    window.addEventListener('keydown', handleEscKey);
-    return () => window.removeEventListener('keydown', handleEscKey);
-  }, [selectedImage]);
-
-  // Reset body overflow when component unmounts
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
-
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -165,18 +133,18 @@ const Portfolio = () => {
           centered={true}
         />
         
-        {/* Filters */}
+        {/* Filters - Improved with modern styling */}
         <AnimatedSection delay={0.2}>
-          <div className="flex flex-wrap justify-center items-center gap-4 my-12">
+          <div className="flex flex-wrap justify-center items-center gap-4 my-16">
             <div className="flex items-center text-white/70 mr-3">
-              <Filter size={16} className="mr-2" />
-              <span className="text-sm">Filter:</span>
+              <Filter size={16} className="mr-2 stroke-[1.5]" />
+              <span className="text-sm font-light tracking-wider">FILTER:</span>
             </div>
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => setActiveFilter(category)}
-                className={`px-4 py-2 text-sm rounded-full transition-colors capitalize ${
+                className={`px-6 py-2 text-sm rounded-none transition-colors uppercase tracking-wider ${
                   activeFilter === category 
                     ? 'bg-white text-black font-medium' 
                     : 'bg-white/10 text-white/80 hover:bg-white/20'
@@ -188,43 +156,41 @@ const Portfolio = () => {
           </div>
         </AnimatedSection>
         
-        {/* Gallery */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {/* Gallery - Improved with clickable images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           {filteredPhotos.map((photo, index) => (
             <AnimatedSection key={photo.id} delay={0.1 * (index % 3)}>
-              <div 
-                className="group relative cursor-pointer rounded-lg overflow-hidden"
-                onClick={() => openImageModal(photo)}
-              >
+              <div className="group relative cursor-pointer rounded-none overflow-hidden">
                 <div className="aspect-w-4 aspect-h-3">
                   <ImageWithLoading
                     src={photo.src}
                     alt={photo.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    clickable={true}
                   />
                 </div>
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <h3 className="text-white text-lg font-medium">{photo.title}</h3>
                   <div className="flex items-center mt-2">
-                    <Tag size={14} className="text-white/70 mr-2" />
-                    <span className="text-white/70 text-sm capitalize">{photo.category}</span>
+                    <Tag size={14} className="text-white/70 mr-2 stroke-[1.5]" />
+                    <span className="text-white/70 text-sm uppercase tracking-wider">{photo.category}</span>
                     <span className="mx-2 text-white/50">•</span>
-                    <CalendarDays size={14} className="text-white/70 mr-2" />
-                    <span className="text-white/70 text-sm">{photo.date}</span>
+                    <CalendarDays size={14} className="text-white/70 mr-2 stroke-[1.5]" />
+                    <span className="text-white/70 text-sm font-light">{photo.date}</span>
                   </div>
                 </div>
                 
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="bg-black/50 backdrop-blur-sm text-white p-2 rounded-full">
-                    <Eye size={16} />
+                    <Eye size={16} stroke-width={1.5} />
                   </div>
                 </div>
                 
                 {photo.featured && (
                   <div className="absolute top-4 left-4">
-                    <div className="bg-white text-black text-xs font-medium px-2 py-1 rounded">
-                      Featured
+                    <div className="bg-white text-black text-xs font-medium px-2 py-1 rounded-none tracking-wider">
+                      FEATURED
                     </div>
                   </div>
                 )}
@@ -235,56 +201,13 @@ const Portfolio = () => {
         
         {/* Empty state */}
         {filteredPhotos.length === 0 && (
-          <div className="text-center py-20">
-            <Camera size={48} className="mx-auto text-white/20 mb-4" />
-            <h3 className="text-xl text-white font-medium">No photos found</h3>
-            <p className="text-white/60 mt-2">Try a different filter</p>
+          <div className="text-center py-32">
+            <Camera size={48} className="mx-auto text-white/20 mb-4 stroke-[1]" />
+            <h3 className="text-2xl text-white font-medium">No photos found</h3>
+            <p className="text-white/60 mt-2 font-light">Try a different filter</p>
           </div>
         )}
       </div>
-      
-      {/* Image Modal */}
-      {selectedImage && (
-        <motion.div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 md:p-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={closeImageModal}
-        >
-          <motion.div
-            className="relative max-w-6xl max-h-[90vh] overflow-hidden rounded-lg"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img 
-              src={selectedImage.src} 
-              alt={selectedImage.title} 
-              className="max-h-[80vh] w-auto mx-auto object-contain"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-4">
-              <h3 className="text-white text-lg font-medium">{selectedImage.title}</h3>
-              <div className="flex items-center mt-1">
-                <Tag size={14} className="text-white/70 mr-2" />
-                <span className="text-white/70 text-sm capitalize">{selectedImage.category}</span>
-                <span className="mx-2 text-white/50">•</span>
-                <CalendarDays size={14} className="text-white/70 mr-2" />
-                <span className="text-white/70 text-sm">{selectedImage.date}</span>
-              </div>
-            </div>
-            <button 
-              className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white p-2 rounded-full"
-              onClick={closeImageModal}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
     </div>
   );
 };

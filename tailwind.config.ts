@@ -74,6 +74,7 @@ export default {
 			fontFamily: {
 				'playfair': ['Playfair Display', 'serif'],
 				'raleway': ['Raleway', 'sans-serif'],
+				'inter': ['Inter Variable', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -165,7 +166,11 @@ export default {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-			}
+			},
+			spacing: {
+				'section': '8rem',
+				'half-section': '4rem',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

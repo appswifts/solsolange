@@ -24,26 +24,27 @@ const SectionHeading = ({
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-3 tracking-tight negative-tracking">
+        <h2 className="text-3xl md:text-5xl font-playfair font-bold text-black dark:text-white mb-6 tracking-tight negative-tracking">
           {title}
         </h2>
         
         {subtitle && (
           <motion.p 
-            className="text-white/70 max-w-2xl mt-2 text-sm md:text-base font-light leading-relaxed"
+            className="text-gray-600 dark:text-white/70 max-w-2xl mt-2 text-lg font-light leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ marginLeft: centered ? 'auto' : '0', marginRight: centered ? 'auto' : '0' }}
           >
             {subtitle}
           </motion.p>
         )}
         
         <motion.div
-          className="w-12 h-[1px] bg-white/50 mt-6"
+          className="w-16 h-[1px] bg-black/30 dark:bg-white/30 mt-8"
           initial={{ width: 0 }}
-          whileInView={{ width: 48 }}
+          whileInView={{ width: 64 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           style={{ marginLeft: centered ? 'auto' : '0', marginRight: centered ? 'auto' : '0' }}

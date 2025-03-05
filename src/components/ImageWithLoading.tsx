@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
 
 interface ImageProps {
   src: string;
@@ -9,11 +10,21 @@ interface ImageProps {
   width?: string;
   height?: string;
   priority?: boolean;
+  clickable?: boolean;
 }
 
-const ImageWithLoading = ({ src, alt, className = '', width, height, priority = false }: ImageProps) => {
+const ImageWithLoading = ({ 
+  src, 
+  alt, 
+  className = '', 
+  width, 
+  height, 
+  priority = false,
+  clickable = false
+}: ImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (priority) {
@@ -21,29 +32,91 @@ const ImageWithLoading = ({ src, alt, className = '', width, height, priority = 
     }
   }, [priority]);
 
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showModal]);
+
   const handleImageLoaded = () => {
     setIsLoading(false);
     setIsLoaded(true);
   };
 
+  const handleImageClick = () => {
+    if (clickable) {
+      setShowModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className="relative overflow-hidden" style={{ width, height }}>
-      {isLoading && (
-        <div className="absolute inset-0 bg-gray-800 animate-pulse rounded" />
-      )}
-      
-      <motion.img
-        src={src}
-        alt={alt}
-        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-        onLoad={handleImageLoaded}
-        loading={priority ? "eager" : "lazy"}
-      />
-    </div>
+    <>
+      <div 
+        className={`relative overflow-hidden ${clickable ? 'cursor-pointer' : ''}`} 
+        style={{ width, height }}
+        onClick={handleImageClick}
+      >
+        {isLoading && (
+          <div className="absolute inset-0 bg-gray-800 animate-pulse rounded" />
+        )}
+        
+        <motion.img
+          src={src}
+          alt={alt}
+          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          onLoad={handleImageLoaded}
+          loading={priority ? "eager" : "lazy"}
+        />
+      </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
+          >
+            <motion.div
+              className="relative max-w-5xl max-h-[90vh]"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src={src} 
+                alt={alt} 
+                className="max-h-[85vh] max-w-full object-contain rounded-md shadow-2xl"
+              />
+              <button 
+                className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-full text-white transition-colors duration-200"
+                onClick={handleCloseModal}
+              >
+                <X size={24} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,8 +24,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 346 77% 49%;
-    --primary-foreground: 355 100% 97%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -32,7 +33,7 @@
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 126 59% 28%;
+    --accent: 0 0% 0%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -40,9 +41,9 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 142 71% 45%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.5rem;
+    --radius: 0.0rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -55,17 +56,17 @@
   }
 
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -97,6 +98,52 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-playfair;
   }
+
+  /* Modern Spacing System */
+  .section-padding {
+    @apply py-32 px-6;
+  }
+
+  .container-padding {
+    @apply px-6 md:px-10;
+  }
+
+  /* Modern Font System */
+  .display-large {
+    @apply text-6xl md:text-7xl lg:text-8xl font-playfair font-bold negative-tracking;
+  }
+
+  .display-medium {
+    @apply text-5xl md:text-6xl font-playfair font-bold negative-tracking;
+  }
+
+  .display-small {
+    @apply text-4xl md:text-5xl font-playfair font-bold negative-tracking;
+  }
+
+  .headline-large {
+    @apply text-3xl md:text-4xl font-playfair font-bold negative-tracking;
+  }
+
+  .headline-medium {
+    @apply text-2xl md:text-3xl font-playfair font-bold negative-tracking;
+  }
+
+  .body-large {
+    @apply text-xl font-raleway font-light leading-relaxed;
+  }
+
+  .body-medium {
+    @apply text-base font-raleway font-light leading-relaxed;
+  }
+
+  .caption {
+    @apply text-sm font-raleway font-light tracking-wide;
+  }
+
+  .overline {
+    @apply text-xs font-raleway font-medium tracking-[0.2em] uppercase;
+  }
 }
 
 /* Custom Classes */
@@ -112,7 +159,7 @@
 }
 
 .text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hover-scale {
@@ -128,7 +175,7 @@
 }
 
 .story-link {
-  @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-black dark:after:bg-white after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
 }
 
 /* Smooth scrolling */
@@ -138,7 +185,7 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -146,12 +193,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.5);
-  border-radius: 4px;
+  background: #000;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary));
+  background: #333;
 }
 
 /* Image lazy loading animation */
@@ -178,7 +225,7 @@ html {
 }
 
 .card-hover:hover::after {
-  @apply border-primary/30;
+  @apply border-black/20 dark:border-white/20;
 }
 
 /* Hero gradient overlay */
@@ -188,7 +235,7 @@ html {
 
 /* Custom outline for focus states */
 .custom-focus {
-  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:ring-offset-0;
 }
 
 /* Dark mode customizations */
@@ -224,11 +271,11 @@ html {
 
 /* Minimal border styles */
 .border-top {
-  @apply border-t border-white/10;
+  @apply border-t border-black/10 dark:border-white/10;
 }
 
 .border-bottom {
-  @apply border-b border-white/10;
+  @apply border-b border-black/10 dark:border-white/10;
 }
 
 /* Custom scrollbar for dark mode */
@@ -241,10 +288,49 @@ html {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
+  background: #fff;
+  border-radius: 0;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #ddd;
+}
+
+/* Modern Transitions */
+.transition-slow {
+  @apply transition-all duration-700 ease-in-out;
+}
+
+.transition-medium {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+.transition-fast {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Modern Overlays */
+.overlay-dark {
+  @apply bg-black/50 backdrop-blur-sm;
+}
+
+.overlay-light {
+  @apply bg-white/50 backdrop-blur-sm;
+}
+
+/* Modern Image Treatments */
+.image-grayscale {
+  @apply grayscale transition-all duration-500 hover:grayscale-0;
+}
+
+.image-contrast {
+  @apply contrast-125;
+}
+
+.image-zoom-container {
+  @apply overflow-hidden;
+}
+
+.image-zoom {
+  @apply transform transition-transform duration-700 hover:scale-110;
 }

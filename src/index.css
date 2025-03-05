@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +10,7 @@
 @import '@fontsource/raleway/400.css';
 @import '@fontsource/raleway/500.css';
 @import '@fontsource/raleway/600.css';
+@import '@fontsource-variable/inter/slnt.css';
 
 @layer base {
   :root {
@@ -55,7 +55,7 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 7%;
     --foreground: 0 0% 98%;
 
     --card: 240 10% 3.9%;
@@ -64,8 +64,8 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 346 77% 49%;
-    --primary-foreground: 355 100% 97%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -73,7 +73,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 126 59% 28%;
+    --accent: 12 6% 15%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -81,7 +81,7 @@
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 142 71% 45%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
@@ -91,7 +91,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-raleway;
+    @apply bg-background text-foreground font-raleway dark:bg-black dark:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -189,4 +189,62 @@ html {
 /* Custom outline for focus states */
 .custom-focus {
   @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+/* Dark mode customizations */
+.dark .hero-overlay {
+  @apply bg-black/60;
+}
+
+.dark .text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.dark .card-hover:hover::after {
+  @apply border-white/30;
+}
+
+/* New modern font classes */
+.font-inter {
+  font-family: 'Inter Variable', sans-serif;
+}
+
+.ultra-thin {
+  font-weight: 100;
+  letter-spacing: 0.02em;
+}
+
+.extra-spacing {
+  letter-spacing: 0.2em;
+}
+
+.negative-tracking {
+  letter-spacing: -0.03em;
+}
+
+/* Minimal border styles */
+.border-top {
+  @apply border-t border-white/10;
+}
+
+.border-bottom {
+  @apply border-b border-white/10;
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

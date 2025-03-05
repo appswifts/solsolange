@@ -29,7 +29,7 @@ const ImageWithLoading = ({ src, alt, className = '', width, height, priority = 
   return (
     <div className="relative overflow-hidden" style={{ width, height }}>
       {isLoading && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />
+        <div className="absolute inset-0 bg-gray-800 animate-pulse rounded" />
       )}
       
       <motion.img

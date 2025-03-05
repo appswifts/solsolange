@@ -13,8 +13,16 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				sm: '2rem',
+				lg: '2rem'
+			},
 			screens: {
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
 				'2xl': '1400px'
 			}
 		},
@@ -168,9 +176,28 @@ export default {
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
 			spacing: {
-				'section': '8rem',
-				'half-section': '4rem',
+				'section': { 
+					DEFAULT: '4rem',
+					sm: '5rem',
+					md: '6rem',
+					lg: '8rem'
+				},
+				'half-section': {
+					DEFAULT: '2rem',
+					sm: '2.5rem',
+					md: '3rem',
+					lg: '4rem'
+				},
 			},
+			fontSize: {
+				'mobile-xs': '0.75rem',    // 12px
+				'mobile-sm': '0.875rem',   // 14px
+				'mobile-base': '1rem',     // 16px
+				'mobile-lg': '1.125rem',   // 18px
+				'mobile-xl': '1.25rem',    // 20px
+				'mobile-2xl': '1.5rem',    // 24px
+				'mobile-3xl': '1.875rem',  // 30px
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

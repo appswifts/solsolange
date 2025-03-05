@@ -83,18 +83,18 @@ const ImageWithLoading = ({
         />
       </div>
 
-      {/* Image Modal */}
+      {/* Image Modal - Improved for mobile */}
       <AnimatePresence>
         {showModal && (
           <motion.div 
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-2 sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
           >
             <motion.div
-              className="relative max-w-5xl max-h-[90vh]"
+              className="relative max-w-5xl max-h-[90vh] w-full"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -104,13 +104,14 @@ const ImageWithLoading = ({
               <img 
                 src={src} 
                 alt={alt} 
-                className="max-h-[85vh] max-w-full object-contain rounded-md shadow-2xl"
+                className="max-h-[85vh] max-w-full w-auto h-auto mx-auto object-contain rounded-md shadow-2xl"
               />
               <button 
-                className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-full text-white transition-colors duration-200"
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 rounded-full text-white transition-colors duration-200"
                 onClick={handleCloseModal}
+                aria-label="Close"
               >
-                <X size={24} />
+                <X size={20} className="sm:size-24" />
               </button>
             </motion.div>
           </motion.div>

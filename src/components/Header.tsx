@@ -23,6 +23,19 @@ const Header = () => {
     setMobileMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    // Prevent scrolling when mobile menu is open
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const isActive = (path: string) => {
     return location.pathname === path;
   };
@@ -37,13 +50,13 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md ${
-      isScrolled ? 'py-3 bg-black/70' : 'py-5 bg-transparent'
+      isScrolled ? 'py-2 bg-black/70' : 'py-3 sm:py-5 bg-transparent'
     }`}>
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-white font-playfair">
-          <span className="text-xl md:text-2xl font-bold tracking-wider">SOL.</span>
-          <span className="text-lg md:text-xl tracking-wide ml-1 font-light text-white/80">SOLANGE</span>
+          <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-wider">SOL.</span>
+          <span className="text-base sm:text-lg md:text-xl tracking-wide ml-1 font-light text-white/80">SOLANGE</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -86,13 +99,13 @@ const Header = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 top-[60px] bg-black flex flex-col z-40"
+            className="fixed inset-0 top-[56px] bg-black flex flex-col z-40"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="flex flex-col py-8 px-6 space-y-8">
+            <div className="flex flex-col py-6 px-6 space-y-6">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.path}
@@ -102,7 +115,7 @@ const Header = () => {
                 >
                   <Link
                     to={link.path}
-                    className={`text-xl ${
+                    className={`text-lg ${
                       isActive(link.path)
                         ? 'text-white font-medium'
                         : 'text-white/70'

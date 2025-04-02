@@ -42,6 +42,15 @@
   color: #888;
 }
 
+/* Ensure all text has proper contrast */
+h1, h2, h3, h4, h5, h6, p, li, span {
+  color: #000;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark p, .dark li, .dark span {
+  color: #fff;
+}
+
 /* Mobile Responsive Utilities */
 @media (max-width: 640px) {
   .container {

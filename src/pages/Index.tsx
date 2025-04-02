@@ -188,7 +188,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section - New addition */}
+      {/* Services Section */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <SectionHeading 
@@ -224,10 +224,10 @@ const Index = () => {
                     {service.icon}
                   </div>
                   <h3 className="text-2xl font-playfair font-bold mb-4 text-black text-center">{service.title}</h3>
-                  <p className="text-gray-600 mb-6 font-light text-center">{service.description}</p>
+                  <p className="text-black mb-6 font-light text-center">{service.description}</p>
                   <ul className="mt-auto space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
+                      <li key={idx} className="flex items-center text-black">
                         <span className="w-1.5 h-1.5 bg-black rounded-full mr-2"></span>
                         <span className="font-light">{feature}</span>
                       </li>

@@ -1,7 +1,6 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Camera, BookOpen, Map, Sun } from 'lucide-react';
+import { ArrowRight, Camera, BookOpen, Map, Sun, Compass, Building, GraduationCap } from 'lucide-react';
 
 import AnimatedSection from '../components/AnimatedSection';
 import SectionHeading from '../components/SectionHeading';
@@ -182,6 +181,64 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-playfair font-bold mb-4 text-black">{item.title}</h3>
                   <p className="text-gray-600 flex-grow font-light">{item.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section - New addition */}
+      <section className="py-32 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeading 
+            title="Our Services" 
+            subtitle="Expertise and support to help you explore Rwanda and beyond, whether you're a traveler, hospitality professional, or aspiring content creator."
+            centered={true}
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+            {[
+              { 
+                icon: <Compass className="h-16 w-16 text-black stroke-[1]" />, 
+                title: "Guidance", 
+                description: "Personalized travel planning and expert guidance to help you discover the hidden gems of Rwanda and make the most of your journey.",
+                features: ["Customized itineraries", "Local insights", "Cultural experiences"]
+              },
+              { 
+                icon: <Building className="h-16 w-16 text-black stroke-[1]" />, 
+                title: "Consultancy in Hospitality", 
+                description: "Professional consulting services for hospitality businesses looking to enhance their offerings and create authentic experiences.",
+                features: ["Business strategy", "Customer experience", "Cultural integration"]
+              },
+              { 
+                icon: <GraduationCap className="h-16 w-16 text-black stroke-[1]" />, 
+                title: "Training Programs", 
+                description: "Learn the art of travel content creation and storytelling through our specialized workshops and training sessions.",
+                features: ["Photography skills", "Travel blogging", "Digital storytelling"]
+              }
+            ].map((service, index) => (
+              <AnimatedSection key={index} delay={0.15 * index}>
+                <div className="bg-white border border-black/10 p-10 rounded-none shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                  <div className="mb-6 mx-auto">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-2xl font-playfair font-bold mb-4 text-black text-center">{service.title}</h3>
+                  <p className="text-gray-600 mb-6 font-light text-center">{service.description}</p>
+                  <ul className="mt-auto space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-gray-700">
+                        <span className="w-1.5 h-1.5 bg-black rounded-full mr-2"></span>
+                        <span className="font-light">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/contact"
+                    className="mt-8 text-black font-medium inline-flex items-center justify-center hover:underline"
+                  >
+                    Learn more <ArrowRight size={16} className="ml-2" />
+                  </Link>
                 </div>
               </AnimatedSection>
             ))}

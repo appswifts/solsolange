@@ -180,7 +180,7 @@ const Index = () => {
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-playfair font-bold mb-4 text-black">{item.title}</h3>
-                  <p className="text-gray-600 flex-grow font-light">{item.description}</p>
+                  <p className="text-black flex-grow font-light">{item.description}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -290,7 +290,7 @@ const Index = () => {
                   </div>
                   <div className="p-8 flex flex-col flex-grow">
                     <h3 className="text-xl font-playfair font-bold mb-4 text-black">{story.title}</h3>
-                    <p className="text-gray-600 mb-6 flex-grow font-light">{story.excerpt}</p>
+                    <p className="text-black mb-6 flex-grow font-light">{story.excerpt}</p>
                     <Link
                       to="/blog"
                       className="text-black font-medium inline-flex items-center hover:underline mt-auto"

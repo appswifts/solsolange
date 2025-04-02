@@ -30,7 +30,7 @@ const SectionHeading = ({
         
         {subtitle && (
           <motion.p 
-            className="text-gray-600 dark:text-white/70 max-w-2xl mt-2 text-base sm:text-lg font-light leading-relaxed"
+            className="text-black dark:text-white/70 max-w-2xl mt-2 text-base sm:text-lg font-light leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
